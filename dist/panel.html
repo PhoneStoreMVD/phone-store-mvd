@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Panel · Phone Store MVD</title>
   <link rel="stylesheet" href="panel.css">
+  <link rel="stylesheet" href="panel-editor.css">
+  <link rel="stylesheet" href="panel-editor-fix.css">
 </head>
 <body>
   <main class="login" id="loginScreen">
@@ -69,12 +71,34 @@
 
       <section class="view" id="tradeins" hidden><div class="view-intro"><div><p class="eyebrow">PLAN RECAMBIO</p><h3>Evaluaciones claras, sin perder oportunidades.</h3><p>Revisá solicitudes, fotos, estado declarado, propuesta y seguimiento en un solo flujo.</p></div><button class="primary">Ver solicitudes →</button></div><div class="checklist"><article><b>01</b><strong>Solicitud recibida</strong><span>Modelo, condición, batería, contacto y fotos del cliente.</span></article><article><b>02</b><strong>Evaluación</strong><span>Estado técnico, IMEI, valor estimado y propuesta de recambio.</span></article><article><b>03</b><strong>Seguimiento</strong><span>Respuesta dentro de 15 minutos y conversión a una nueva venta.</span></article></div></section>
 
-      <section class="view" id="offers" hidden><div class="view-intro"><div><p class="eyebrow">PROMOCIONES</p><h3>Ofertas con fecha, reglas y resultado.</h3><p>Creá códigos, descuentos por modelo, bundles y campañas de temporada.</p></div><button class="primary">+ Nueva promoción</button></div><article class="empty-state">Las promociones activas aparecerán en la barra de la web y en los productos elegidos.</article></section>
+      <section class="view" id="offers" hidden>
+        <div class="view-intro"><div><p class="eyebrow">PROMOCIONES</p><h3>Una campaña clara para cada momento.</h3><p>Creá descuentos, códigos y condiciones sin tocar código. Primero los revisás visualmente; luego quedan listos para publicar.</p></div><button class="primary" id="newCampaign">+ Nueva campaña</button></div>
+        <div class="campaign-layout">
+          <form class="editor-card campaign-form" id="campaignForm">
+            <div class="editor-card-head"><div><span class="status">CAMPAÑA EDITABLE</span><h3>Oferta de Octubre</h3></div><span class="save-state" id="campaignState">Borrador</span></div>
+            <div class="editor-fields"><label>Nombre de campaña<input name="name" value="Oferta de Octubre"></label><label>Código de descuento<input name="code" value="OCTUBRE15"></label><label>Beneficio<select name="benefit"><option value="15% OFF">15% OFF</option><option value="10% OFF">10% OFF</option><option value="Envío gratis">Envío gratis</option><option value="Precio especial">Precio especial</option></select></label><label>Vigencia<input name="period" value="1 al 31 de octubre"></label><label class="wide">Condición<textarea name="condition">En accesorios con la compra de un iPhone.</textarea></label></div>
+            <label class="campaign-toggle"><input type="checkbox" name="active" checked><span></span> Mostrar en la barra y en la sección de ofertas</label>
+            <div class="editor-actions"><button class="outline" type="button" id="resetCampaign">Restablecer</button><button class="primary" type="submit">Guardar borrador <span>→</span></button></div><p class="editor-note" id="campaignNote" aria-live="polite"></p>
+          </form>
+          <aside class="campaign-preview"><div class="preview-label">VISTA PREVIA · TIENDA</div><div class="preview-browser"><div class="preview-ticker" id="previewTicker">OCTUBRE15 · 15% OFF</div><div class="preview-offer"><span id="previewKicker">OFERTA DE OCTUBRE</span><h4 id="previewBenefit">15% OFF</h4><p id="previewCondition">En accesorios con la compra de un iPhone.</p><b id="previewCode">OCTUBRE15</b><small id="previewPeriod">1 al 31 de octubre</small></div></div><p>La vista cambia mientras editás. El borrador queda guardado en este dispositivo hasta conectar la base de datos.</p></aside>
+        </div>
+      </section>
       <section class="view" id="customers" hidden><div class="view-intro"><div><p class="eyebrow">CLIENTES</p><h3>Compras y postventa en un solo lugar.</h3><p>Datos necesarios de envío, historial de pedidos, garantía y conversaciones autorizadas.</p></div></div><article class="empty-state">Los clientes se crearán al confirmar una compra o registrar una venta manual.</article></section>
-      <section class="view" id="content" hidden><div class="view-intro"><div><p class="eyebrow">CONTENIDO WEB</p><h3>La tienda cambia con tu marca.</h3><p>Editá titulares, video, banners, destacados, contactos, reseñas y bloques de la portada.</p></div><button class="primary">Editar portada →</button></div><div class="checklist"><article><b>01</b><strong>Portada</strong><span>Video, mensaje y llamada a la acción.</span></article><article><b>02</b><strong>Destacados</strong><span>Productos y colecciones visibles antes del catálogo.</span></article><article><b>03</b><strong>Confianza</strong><span>Contacto, entregas, reseñas y garantías.</span></article></div></section>
+      <section class="view" id="content" hidden>
+        <div class="view-intro"><div><p class="eyebrow">CONTENIDO WEB</p><h3>Diseñá la portada sin depender de código.</h3><p>Elegí qué se muestra, cambiá textos y revisá el resultado en el mismo panel antes de guardar.</p></div><button class="primary" id="openCampaigns">Ver campañas →</button></div>
+        <div class="content-layout">
+          <form class="editor-card homepage-form" id="homepageForm">
+            <div class="editor-card-head"><div><span class="status">PORTADA</span><h3>Mensaje principal</h3></div><span class="save-state" id="homepageState">Sin cambios</span></div>
+            <div class="editor-fields"><label>Etiqueta superior<input name="eyebrow" value="PHONE STORE MVD / MONTEVIDEO"></label><label>Botón principal<input name="cta" value="Explorar tienda"></label><label class="wide">Titular<input name="headline" value="Elegí lo que te representa."></label><label class="wide">Bajada<textarea name="subline">iPhone y accesorios seleccionados.</textarea></label></div>
+            <div class="content-options"><button type="button" class="content-option active"><b>Portada</b><span>Titular y llamada a la acción</span></button><button type="button" class="content-option"><b>Destacados</b><span>Productos antes del catálogo</span></button><button type="button" class="content-option"><b>Confianza</b><span>Garantía, envíos y reseñas</span></button></div>
+            <div class="editor-actions"><button class="outline" type="button" id="resetHomepage">Restablecer</button><button class="primary" type="submit">Guardar cambios <span>→</span></button></div><p class="editor-note" id="homepageNote" aria-live="polite"></p>
+          </form>
+          <aside class="homepage-preview"><div class="preview-label">VISTA PREVIA · PORTADA</div><div class="preview-phone"><p id="homePreviewEyebrow">PHONE STORE MVD / MONTEVIDEO</p><h4 id="homePreviewHeadline">Elegí lo que<br>te representa.</h4><span id="homePreviewSubline">iPhone y accesorios seleccionados.</span><b id="homePreviewCta">Explorar tienda →</b></div><p>Cada campo se actualiza al instante. Así podés validar el diseño antes de guardarlo.</p></aside>
+        </div>
+      </section>
       <section class="view" id="analytics" hidden><div class="view-intro"><div><p class="eyebrow">ANALÍTICA</p><h3>Medí para vender mejor.</h3><p>Visitas, productos vistos, carritos, compras, códigos y origen de cada venta.</p></div></div><article class="empty-state">La analítica real se habilita al conectar la base de datos y el seguimiento de eventos.</article></section>
     </section>
   </main>
-  <script src="panel.js"></script>
+  <script src="panel.js"></script><script src="panel-editor.js"></script>
 </body>
 </html>

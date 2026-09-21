@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Panel · Phone Store MVD</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <main class="login" id="loginScreen">
+    <section class="login-card">
+      <img src="assets/brand-logo-final.png" alt="Phone Store MVD" class="login-logo">
+      <p class="eyebrow">ACCESO PRIVADO</p>
+      <h1>Todo el negocio,<br>bajo control.</h1>
+      <p>Gestioná catálogo, garantías, pedidos y contenido sin editar código.</p>
+      <form id="loginForm" novalidate>
+        <label>Usuario<input id="user" autocomplete="username" required placeholder="Usuario"></label>
+        <label>Contraseña<input id="password" type="password" autocomplete="current-password" required placeholder="Contraseña"></label>
+        <p class="form-error" id="loginError" aria-live="polite"></p>
+        <button class="primary" type="submit">Ingresar <span>→</span></button>
+      </form>
+      <small>Entorno de demostración local.</small>
+    </section>
+  </main>
+
+  <main class="dashboard" id="dashboard" hidden>
+    <aside class="sidebar">
+      <a href="index.html" class="brand"><img src="assets/brand-logo-final.png" alt="Phone Store MVD"></a>
+      <div class="sidebar-owner"><span>PANEL DE</span><b>Rubiel Medina</b></div>
+      <p class="side-label">OPERACIÓN</p>
+      <nav aria-label="Panel de administración">
+        <button class="nav-item active" data-view="summary">Resumen</button>
+        <button class="nav-item" data-view="products">Productos y fichas</button>
+        <button class="nav-item" data-view="inventory">Inventario</button>
+        <button class="nav-item" data-view="orders">Pedidos</button>
+        <button class="nav-item" data-view="warranties">Garantías</button>
+        <button class="nav-item" data-view="tradeins">Plan Recambio</button>
+        <button class="nav-item" data-view="offers">Promociones</button>
+        <button class="nav-item" data-view="customers">Clientes</button>
+        <button class="nav-item" data-view="content">Contenido web</button>
+        <button class="nav-item" data-view="analytics">Analítica</button>
+      </nav>
+      <button id="logout" class="logout">Cerrar sesión ↗</button>
+    </aside>
+
+    <section class="workspace">
+      <header class="workspace-head"><div><p class="eyebrow">PANEL PRIVADO · PHONE STORE MVD</p><h2 id="viewTitle">Bienvenido, Rubiel.</h2><span class="owner-note">Todo lo importante de tu tienda, en un solo lugar.</span></div><aside class="owner-profile"><img src="assets/rubiel-service-bench.jpg" alt="Mesa de servicio técnico Phone Store MVD"><div><b>Rubiel Medina</b><span>Dirección y servicio técnico</span></div></aside></header>
+
+      <section class="view" id="summary">
+        <div class="metric-grid"><article><span>Ventas de hoy</span><strong>$ 0</strong><small>Aguardando pedidos confirmados</small></article><article><span>Pedidos a preparar</span><strong>0</strong><small>Se actualiza con pagos verificados</small></article><article><span>Garantías activas</span><strong>0</strong><small>Vigencia: 6 meses desde la venta</small></article><article><span>Stock crítico</span><strong>0</strong><small>Configurá el mínimo por producto</small></article></div>
+        <div class="panel-grid"><article class="panel"><p class="eyebrow">PRÓXIMA ACCIÓN</p><h3>Tu operación empieza con el catálogo.</h3><p>Creá fichas completas, con galería, especificaciones, stock, precio y condiciones.</p><button class="text-button" data-go="products">Crear el primer producto →</button></article><article class="panel"><p class="eyebrow">GARANTÍAS</p><h3>Todo equipo queda trazado.</h3><p>El número de serie/IMEI, fecha de venta y comprador quedan vinculados al comprobante.</p><button class="text-button" data-go="warranties">Ver registro de garantías →</button></article></div>
+      </section>
+
+      <section class="view" id="products" hidden>
+        <div class="view-intro"><div><p class="eyebrow">CATÁLOGO Y FICHAS</p><h3>Productos que se entienden antes de comprar.</h3><p>Una ficha combina fotos, variantes, precio, stock, entrega y especificaciones técnicas.</p></div><button class="primary">+ Nuevo producto</button></div>
+        <article class="product-editor"><div class="phone-placeholder">IPHONE<br>15</div><div><span class="status">BORRADOR</span><h3>iPhone 15 · 128 GB</h3><p>Azul · nuevo sellado · garantía oficial de Phone Store MVD.</p><div class="specs"><span>Galería: 0 fotos</span><span>Stock: 0</span><span>Precio: sin definir</span><span>Ficha: pendiente</span></div></div><button class="outline">Editar ficha →</button></article>
+        <div class="checklist"><article><b>01</b><strong>Galería visual</strong><span>Fotos de frente, dorso, cámaras, caja y accesorios.</span></article><article><b>02</b><strong>Información completa</strong><span>Capacidad, color, condición, batería, conectividad y qué incluye.</span></article><article><b>03</b><strong>Venta lista</strong><span>Precio, descuento, stock, entrega y botón de compra.</span></article></div>
+      </section>
+
+      <section class="view" id="inventory" hidden><div class="view-intro"><div><p class="eyebrow">INVENTARIO</p><h3>Control por unidad, no solo por modelo.</h3><p>Cada teléfono debe tener IMEI/serie, condición, costo, ubicación y estado de disponibilidad.</p></div><button class="primary">+ Registrar unidad</button></div><article class="empty-state">Cuando registres unidades, vas a ver aquí el stock disponible, reservado, vendido y en servicio técnico.</article></section>
+      <section class="view" id="orders" hidden><div class="view-intro"><div><p class="eyebrow">PEDIDOS</p><h3>Pagos, entregas y seguimiento.</h3><p>Los pedidos reales deben crearse únicamente tras la confirmación del pago.</p></div></div><article class="empty-state">Todavía no hay pedidos. La integración de Mercado Pago registrará el estado del pago y activará la preparación.</article></section>
+
+      <section class="view" id="warranties" hidden>
+        <div class="view-intro"><div><p class="eyebrow">GARANTÍAS · 6 MESES</p><h3>Una historia verificable para cada equipo.</h3><p>Registrá ventas online o manuales; la garantía vence seis meses después de la fecha de venta.</p></div><button class="primary" id="openWarranty">+ Registrar venta manual</button></div>
+        <div class="warranty-table"><div class="table-head"><span>Equipo / serie</span><span>Comprador</span><span>Venta</span><span>Vence</span><span>Estado</span></div><div class="empty-row">No hay garantías registradas todavía.</div></div>
+        <form class="warranty-form" id="warrantyForm" hidden>
+          <h3>Registrar garantía manual</h3><div class="form-grid"><label>Modelo<input required placeholder="Ej. iPhone 15 Pro"></label><label>IMEI o número de serie<input required placeholder="Identificador del equipo"></label><label>Nombre del comprador<input required placeholder="Nombre completo"></label><label>WhatsApp o email<input required placeholder="Contacto"></label><label>Fecha de venta<input type="date" required></label><label>Comprobante / nota<input placeholder="Factura, recibo u observación"></label></div><div class="form-actions"><button class="outline" type="button" id="cancelWarranty">Cancelar</button><button class="primary" type="submit">Guardar garantía →</button></div><p id="warrantyNote" aria-live="polite"></p></form>
+      </section>
+
+      <section class="view" id="tradeins" hidden><div class="view-intro"><div><p class="eyebrow">PLAN RECAMBIO</p><h3>Evaluaciones claras, sin perder oportunidades.</h3><p>Revisá solicitudes, fotos, estado declarado, propuesta y seguimiento en un solo flujo.</p></div><button class="primary">Ver solicitudes →</button></div><div class="checklist"><article><b>01</b><strong>Solicitud recibida</strong><span>Modelo, condición, batería, contacto y fotos del cliente.</span></article><article><b>02</b><strong>Evaluación</strong><span>Estado técnico, IMEI, valor estimado y propuesta de recambio.</span></article><article><b>03</b><strong>Seguimiento</strong><span>Respuesta dentro de 15 minutos y conversión a una nueva venta.</span></article></div></section>
+
+      <section class="view" id="offers" hidden><div class="view-intro"><div><p class="eyebrow">PROMOCIONES</p><h3>Ofertas con fecha, reglas y resultado.</h3><p>Creá códigos, descuentos por modelo, bundles y campañas de temporada.</p></div><button class="primary">+ Nueva promoción</button></div><article class="empty-state">Las promociones activas aparecerán en la barra de la web y en los productos elegidos.</article></section>
+      <section class="view" id="customers" hidden><div class="view-intro"><div><p class="eyebrow">CLIENTES</p><h3>Compras y postventa en un solo lugar.</h3><p>Datos necesarios de envío, historial de pedidos, garantía y conversaciones autorizadas.</p></div></div><article class="empty-state">Los clientes se crearán al confirmar una compra o registrar una venta manual.</article></section>
+      <section class="view" id="content" hidden><div class="view-intro"><div><p class="eyebrow">CONTENIDO WEB</p><h3>La tienda cambia con tu marca.</h3><p>Editá titulares, video, banners, destacados, contactos, reseñas y bloques de la portada.</p></div><button class="primary">Editar portada →</button></div><div class="checklist"><article><b>01</b><strong>Portada</strong><span>Video, mensaje y llamada a la acción.</span></article><article><b>02</b><strong>Destacados</strong><span>Productos y colecciones visibles antes del catálogo.</span></article><article><b>03</b><strong>Confianza</strong><span>Contacto, entregas, reseñas y garantías.</span></article></div></section>
+      <section class="view" id="analytics" hidden><div class="view-intro"><div><p class="eyebrow">ANALÍTICA</p><h3>Medí para vender mejor.</h3><p>Visitas, productos vistos, carritos, compras, códigos y origen de cada venta.</p></div></div><article class="empty-state">La analítica real se habilita al conectar la base de datos y el seguimiento de eventos.</article></section>
+    </section>
+  </main>
+  <script src="panel.js"></script>
+</body>
+</html>

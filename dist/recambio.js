@@ -1,0 +1,1 @@
+document.querySelector('#tradeinForm')?.addEventListener('submit',(event)=>{event.preventDefault();document.querySelector('#tradeinStatus').textContent='Solicitud preparada. En la versión conectada, tus fotos se guardarán de forma segura y Rubiel te responderá en hasta 15 minutos.'});

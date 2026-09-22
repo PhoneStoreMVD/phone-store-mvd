@@ -18,6 +18,7 @@
 .offers article b{color:#7df5ff;text-shadow:0 0 20px #34e6f566}
 .offers article button{border-radius:999px;background:#7df5ff;color:#05151d;padding:12px 18px}
 .trust-strip{display:flex;gap:12px;max-width:1120px;margin:0 auto;padding:0 28px 28px}.trust-strip>div{flex:1;display:flex;align-items:center;gap:12px;padding:15px 16px;border:1px solid #273449;border-radius:14px;background:linear-gradient(135deg,#111b29,#0c121c);color:#eef7fa}.trust-strip svg{width:24px;height:24px;flex:none;fill:none;stroke:#62e8f0;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.trust-strip span{display:grid;gap:4px}.trust-strip b{font-size:12px}.trust-strip small{font-size:11px;color:#91a0b5}.offers{position:relative;overflow:hidden}.offers:before{content:'15% OFF';position:absolute;right:7%;top:28px;padding:8px 12px;border:1px solid #6cecf2;border-radius:999px;color:#7df5ff;font-size:11px;font-weight:800;letter-spacing:.1em;transform:rotate(6deg)}
+.trust-strip{gap:0;padding:0 6vw 34px;background:#fff;color:#17202d}.trust-strip>div{background:#fff;border:0;border-left:1px solid #d8dee7;border-radius:0;padding:8px 22px}.trust-strip>div:first-child{border-left:0;padding-left:0}.trust-strip svg{width:21px;height:21px}.trust-strip b{font-size:11px;font-weight:700;color:#17202d}.trust-strip small{font-size:10px;color:#68758a}
 .footer-contact{display:flex;align-items:center;gap:20px}
 .footer-contact a:last-child{color:#9ba1ae;font-size:12px}
 .footer-contact .footer-channel{display:inline-flex;align-items:center;gap:9px;color:#f4f6fb;border-bottom:1px solid #687082;padding:10px 0;white-space:nowrap}
@@ -27,7 +28,7 @@
   .filters button{flex:1;min-width:0;padding:12px 4px 16px}
   .filter-icon{width:26px;height:26px}
   .offers{padding:58px 22px 64px;gap:24px}
-  .trust-strip{display:grid;grid-template-columns:1fr;padding:0 20px 20px;gap:8px}.trust-strip>div{padding:12px 14px}.trust-strip svg{width:21px;height:21px}.trust-strip b{font-size:12px}.trust-strip small{font-size:10px}.offers:before{right:20px;top:24px;font-size:9px}
+  .trust-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;padding:0 20px 22px;gap:0;background:#fff}.trust-strip>div{min-width:0;padding:8px 9px;display:grid;grid-template-columns:1fr;justify-items:center;text-align:center;gap:5px;border-left:1px solid #d8dee7;background:#fff}.trust-strip>div:first-child{border-left:0;padding-left:0}.trust-strip svg{width:20px;height:20px}.trust-strip span{gap:3px}.trust-strip b{font-size:10px;line-height:1.15;color:#17202d}.trust-strip small{font-size:9px;line-height:1.15;color:#68758a}.offers:before{right:20px;top:24px;font-size:9px}
   .offers:after{right:-12px;top:20px;font-size:170px}
   .offers h2{font-size:52px;position:relative;z-index:1}
   .offers article{padding:24px}
@@ -39,3 +40,8 @@
   .footer-contact .footer-channel{width:100%;justify-content:flex-start}
 }
 .store-social{display:grid;place-items:center;width:34px;height:34px;border:1px solid #354258;border-radius:50%;color:#69e7ef;background:transparent;transition:.2s ease}.store-social:hover{border-color:#69e7ef;background:#10222c;transform:translateY(-1px)}.store-social .icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.store .cart{display:inline-flex;align-items:center;gap:8px}.store .cart b{margin-left:2px}
+.store, .store body{overflow-x:hidden!important}
+.family{overflow-x:hidden!important}.family-track{max-width:100vw!important}
+.offers article{position:relative;overflow:hidden}.offers article:after{content:'✦';position:absolute;right:22px;top:18px;color:#12d5e3;font-size:28px;opacity:.75}.offers article b{color:#0a2030!important;text-shadow:0 0 18px #55efff88}.offers article small{color:#087f91!important;font-weight:800;letter-spacing:.14em}.offers h2{letter-spacing:-.06em}
+.checkout{position:relative;overflow:hidden}.checkout:before{content:'✦';position:absolute;right:16%;top:22%;font-size:80px;color:#18d8e8;opacity:.12}.checkout:after{content:'Compra simple · atención real · garantía';display:block;margin-top:16px;color:#5b6879;font-size:12px;letter-spacing:.08em}
+.footer-contact .footer-channel{color:#263346!important}.footer-contact .footer-channel span{color:#52627a!important}

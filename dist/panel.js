@@ -23,6 +23,9 @@ document.querySelector('#logout').addEventListener('click', async () => {
 });
 
 const titles = {summary:'Bienvenido, Rubiel.',products:'Productos y fichas',inventory:'Inventario',orders:'Pedidos',warranties:'Garantías',tradeins:'Plan Recambio',offers:'Promociones',customers:'Clientes',content:'Contenido web',analytics:'Analítica'};
+const catalogProducts=[['iPhone 16 Pro','128 GB · Titanio natural','$ 57.990','iphone'],['iPhone 16','128 GB · Negro','$ 48.990','iphone'],['iPhone 15','128 GB · Azul','$ 39.990','iphone'],['Funda MagSafe','Protección magnética','$ 1.890','accessory'],['Cable USB-C','1 m · Trenzado','$ 990','accessory'],['Cargador 20W','Carga rápida','$ 1.490','accessory'],['Auriculares inalámbricos','Audio envolvente','$ 3.290','accessory']];
+function renderPanelCatalog(){const editor=document.querySelector('.product-editor');if(!editor)return;editor.outerHTML=`<div class="panel-catalog" id="panelCatalog">${catalogProducts.map((p,i)=>`<article class="panel-product"><div class="panel-product-art ${p[3]}">${p[3]==='iphone'?'IPHONE':'SETUP'}</div><div><span class="status">${p[3]==='iphone'?'IPHONE':'ACCESORIO'}</span><h3>${p[0]}</h3><p>${p[1]}</p><strong>${p[2]}</strong></div><button class="outline" data-edit-product="${i}">Editar ficha →</button></article>`).join('')}</div>`;document.querySelectorAll('[data-edit-product]').forEach(btn=>btn.addEventListener('click',()=>{btn.textContent='Edición preparada ✓';btn.closest('.panel-product').classList.add('is-editing')}))}
+renderPanelCatalog();
 function openView(id) {
   document.querySelectorAll('.view').forEach((view) => { view.hidden = view.id !== id; });
   document.querySelectorAll('.nav-item').forEach((item) => item.classList.toggle('active', item.dataset.view === id));

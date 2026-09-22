@@ -34,13 +34,13 @@
     <div class="filters" aria-label="Filtrar catálogo">
       <button class="selected" data-filter="all"><svg class="filter-icon" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg><span>Todo</span></button>
       <button data-filter="iphone"><svg class="filter-icon" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M10 6h4M11 18h2"/></svg><span>iPhone</span></button>
-      <button data-filter="accessory"><svg class="filter-icon" viewBox="0 0 24 24"><path d="M8 4h8v5H8zM6 9h12v11H6z"/><path d="M10 13h4"/></svg><span>Accesorios</span></button>
+      <button data-filter="accessory"><svg class="filter-icon" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2M9 12h6"/></svg><span>Accesorios</span></button>
     </div>
     <section class="products" id="products"></section>
-    <section class="offers" id="ofertas"><div><p>OFERTAS SELECCIONADAS</p><h2>Mejor<br>juntos.</h2><span>Sumá un accesorio a tu compra y aplicá el código en el carrito.</span></div><article><small>CÓDIGO</small><b>SETUP15</b><p>15% OFF en accesorios con la compra de un iPhone.</p><button data-copy>Copiar código</button></article></section>
+    <section class="offers" id="ofertas"><div><p>OFERTA EXCLUSIVA</p><h2>Tu setup,<br>más completo.</h2><span>Sumá un accesorio a tu iPhone y aprovechá este beneficio especial.</span></div><article><small>CÓDIGO DE BENEFICIO</small><b>SETUP15</b><p>Ahorrá 15% en accesorios al comprar tu iPhone.</p><button data-copy>Copiar código</button></article></section>
     <section id="checkout" class="checkout"><p>¿LISTO?</p><h2>Tu carrito<br>te espera.</h2><button class="pay" data-cart>Ver mi carrito →</button></section>
   </main>
-  <footer><img src="assets/brand-logo-final.png" alt="Phone Store MVD"><span>© 2026 · Montevideo, Uruguay</span><a href="https://wa.me/59800000000">WhatsApp ↗</a></footer>
+  <footer><img src="assets/brand-logo-final.png" alt="Phone Store MVD"><span>© 2026 · Montevideo, Uruguay</span><div class="footer-contact"><a href="https://wa.me/59800000000">WhatsApp ↗</a><a href="mailto:phonestoremvd@gmail.com">phonestoremvd@gmail.com</a></div></footer>
   <div class="drawer" id="cartDrawer"><header><b>Tu carrito</b><button data-close>×</button></header><div id="cartLines"></div><div class="coupon"><input id="coupon" placeholder="Código de descuento"><button id="applyCoupon">Aplicar</button></div><div class="total">Subtotal <b id="cartTotal">$ 0</b></div><button class="pay" id="payButton">Ir a pagar →</button></div><div class="toast" id="toast"></div>
   <script src="app.js"></script><script src="store-mobile.js"></script>
 </body>

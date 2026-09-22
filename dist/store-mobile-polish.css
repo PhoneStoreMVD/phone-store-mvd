@@ -7,3 +7,29 @@
 @media(max-width:800px){.store .mobile-menu,.store .cart{width:37px!important;height:37px!important;border:0!important;border-radius:10px!important;background:transparent!important;box-shadow:none!important}.store .mobile-menu{display:grid!important;place-content:center!important;gap:6px!important;padding:0!important}.store .mobile-menu i{width:20px!important;height:1.5px!important;background:#f2f5f8!important}.store .cart{display:grid!important;place-items:center!important;padding:0!important}.store .cart .icon{width:21px!important;height:21px!important;stroke:#f2f5f8!important;stroke-width:1.7!important}.store .cart b{right:-1px!important;top:0!important;width:17px!important;height:17px!important;line-height:17px!important;border:2px solid #090d14!important;background:#16d3df!important;color:#07111b!important;font-size:9px!important}.store-social{border-color:#263449!important;background:transparent!important}}
 
 @media(max-width:800px){.store #cartCount{display:none!important}}
+/* Final polish: stronger merchandising, coherent surfaces and mobile footer */
+.filters{background:#fff;color:#111827;border-bottom:1px solid #d9dde5}
+.filters button{color:#596273;min-width:92px}
+.filters button.selected,.filters button:hover{color:#087f91}
+.filter-icon{width:30px;height:30px;display:block;margin:0 auto 8px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.offers{background:linear-gradient(120deg,#07131f 0%,#123b50 52%,#252052 100%);position:relative;overflow:hidden}
+.offers:after{content:'15%';position:absolute;right:5vw;top:-30px;font-size:clamp(150px,20vw,300px);font-weight:800;line-height:1;color:#7df5ff1c;pointer-events:none}
+.offers article{position:relative;z-index:1;background:linear-gradient(145deg,#ffffff20,#ffffff08);border:1px solid #7ef5ff70;box-shadow:0 16px 40px #02091266;border-radius:20px}
+.offers article b{color:#7df5ff;text-shadow:0 0 20px #34e6f566}
+.offers article button{border-radius:999px;background:#7df5ff;color:#05151d;padding:12px 18px}
+.footer-contact{display:flex;align-items:center;gap:20px}
+.footer-contact a:last-child{color:#9ba1ae;font-size:12px}
+@media(max-width:800px){
+  .filters{padding:12px 20px 0;justify-content:space-between}
+  .filters button{flex:1;min-width:0;padding:12px 4px 16px}
+  .filter-icon{width:26px;height:26px}
+  .offers{padding:58px 22px 64px;gap:24px}
+  .offers:after{right:-12px;top:20px;font-size:170px}
+  .offers h2{font-size:52px;position:relative;z-index:1}
+  .offers article{padding:24px}
+  footer{display:flex;flex-wrap:wrap;gap:14px;padding:28px 20px;align-items:flex-start}
+  footer img{width:132px;height:44px}
+  footer span{width:100%;margin-top:0;font-size:12px}
+  .footer-contact{width:100%;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .footer-contact a{font-size:13px!important}
+}

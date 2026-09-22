@@ -17,6 +17,7 @@
 .offers article{position:relative;z-index:1;background:linear-gradient(145deg,#ffffff20,#ffffff08);border:1px solid #7ef5ff70;box-shadow:0 16px 40px #02091266;border-radius:20px}
 .offers article b{color:#7df5ff;text-shadow:0 0 20px #34e6f566}
 .offers article button{border-radius:999px;background:#7df5ff;color:#05151d;padding:12px 18px}
+.trust-strip{display:flex;gap:12px;max-width:1120px;margin:0 auto;padding:0 28px 28px}.trust-strip>div{flex:1;display:flex;align-items:center;gap:12px;padding:15px 16px;border:1px solid #273449;border-radius:14px;background:linear-gradient(135deg,#111b29,#0c121c);color:#eef7fa}.trust-strip svg{width:24px;height:24px;flex:none;fill:none;stroke:#62e8f0;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.trust-strip span{display:grid;gap:4px}.trust-strip b{font-size:12px}.trust-strip small{font-size:11px;color:#91a0b5}.offers{position:relative;overflow:hidden}.offers:before{content:'15% OFF';position:absolute;right:7%;top:28px;padding:8px 12px;border:1px solid #6cecf2;border-radius:999px;color:#7df5ff;font-size:11px;font-weight:800;letter-spacing:.1em;transform:rotate(6deg)}
 .footer-contact{display:flex;align-items:center;gap:20px}
 .footer-contact a:last-child{color:#9ba1ae;font-size:12px}
 .footer-contact .footer-channel{display:inline-flex;align-items:center;gap:9px;color:#f4f6fb;border-bottom:1px solid #687082;padding:10px 0;white-space:nowrap}
@@ -26,6 +27,7 @@
   .filters button{flex:1;min-width:0;padding:12px 4px 16px}
   .filter-icon{width:26px;height:26px}
   .offers{padding:58px 22px 64px;gap:24px}
+  .trust-strip{display:grid;grid-template-columns:1fr;padding:0 20px 20px;gap:8px}.trust-strip>div{padding:12px 14px}.trust-strip svg{width:21px;height:21px}.trust-strip b{font-size:12px}.trust-strip small{font-size:10px}.offers:before{right:20px;top:24px;font-size:9px}
   .offers:after{right:-12px;top:20px;font-size:170px}
   .offers h2{font-size:52px;position:relative;z-index:1}
   .offers article{padding:24px}

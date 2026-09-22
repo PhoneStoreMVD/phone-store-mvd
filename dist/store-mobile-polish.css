@@ -36,3 +36,4 @@
   .footer-contact a{font-size:13px!important}
   .footer-contact .footer-channel{width:100%;justify-content:flex-start}
 }
+.store-social{display:grid;place-items:center;width:34px;height:34px;border:1px solid #354258;border-radius:50%;color:#69e7ef;background:transparent;transition:.2s ease}.store-social:hover{border-color:#69e7ef;background:#10222c;transform:translateY(-1px)}.store-social .icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.store .cart{display:inline-flex;align-items:center;gap:8px}.store .cart b{margin-left:2px}

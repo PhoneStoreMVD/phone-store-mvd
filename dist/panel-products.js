@@ -1,7 +1,67 @@
-const adminCatalogKey='psmvd-admin-catalog';
-const adminCatalog=JSON.parse(localStorage.getItem(adminCatalogKey)||'null')||[{name:'iPhone 16 Pro',detail:'128 GB · Titanio natural',price:57990,cat:'iphone',stock:2,description:'Nuevo sellado y garantía Phone Store MVD.'},{name:'iPhone 16',detail:'128 GB · Negro',price:48990,cat:'iphone',stock:3,description:'Equipo nuevo listo para entregar.'},{name:'iPhone 15',detail:'128 GB · Azul',price:39990,cat:'iphone',stock:2,description:'Equipo seleccionado para todos los días.'},{name:'Funda MagSafe',detail:'Protección magnética',price:1890,cat:'accessory',stock:8,description:'Protección magnética.'},{name:'Cable USB-C',detail:'1 m · Trenzado',price:990,cat:'accessory',stock:12,description:'Carga y datos.'},{name:'Cargador 20W',detail:'Carga rápida',price:1490,cat:'accessory',stock:7,description:'Carga rápida.'},{name:'Auriculares inalámbricos',detail:'Audio envolvente',price:3290,cat:'accessory',stock:5,description:'Audio claro.'}];
-const adminMoney=value=>'$ '+Number(value||0).toLocaleString('es-UY');
-function adminCard(product,index){return `<article class="panel-product"><div class="panel-product-art ${product.cat}">${product.cat==='iphone'?'IPHONE':'SETUP'}</div><div><span class="status">${product.cat==='iphone'?'IPHONE':'ACCESORIO'}</span><h3>${product.name}</h3><p>${product.detail}</p><strong>${adminMoney(product.price)} · ${product.stock} disponibles</strong></div><button class="outline" data-real-edit="${index}">Editar ficha →</button></article>`}
-function renderAdminCatalog(){const root=document.querySelector('#panelCatalog');if(!root)return;root.innerHTML=['iphone','accessory'].map(cat=>`<section class="catalog-group"><header><p>${cat==='iphone'?'IPHONE':'ACCESORIOS'}</p><span>${cat==='iphone'?'Equipos disponibles':'Complementos y setup'}</span></header>${adminCatalog.map((product,index)=>product.cat===cat?adminCard(product,index):'').join('')}</section>`).join('');root.querySelectorAll('[data-real-edit]').forEach(button=>button.onclick=()=>openAdminEditor(Number(button.dataset.realEdit)))}
-function openAdminEditor(index){let modal=document.querySelector('#productModal');if(!modal){document.body.insertAdjacentHTML('beforeend',`<div class="product-modal" id="productModal" hidden><div class="product-dialog"><button class="modal-close" type="button">×</button><form id="adminProductForm"><p class="eyebrow">EDITOR DE PRODUCTO</p><h3 id="adminEditorTitle"></h3><div class="editor-fields"><label>Nombre<input name="name" required></label><label>Categoría<select name="cat"><option value="iphone">iPhone</option><option value="accessory">Accesorio</option></select></label><label>Detalle<input name="detail" required></label><label>Precio UYU<input name="price" type="number" required></label><label>Stock<input name="stock" type="number" required></label><label class="wide">Descripción<textarea name="description"></textarea></label></div><div class="editor-actions"><button class="outline" type="button" id="closeProduct">Cancelar</button><button class="primary">Guardar cambios →</button></div><p class="editor-note" id="adminProductNote"></p></form><aside class="product-live-preview"><p>VISTA PREVIA · TIENDA</p><article><small id="previewType"></small><div class="live-art" id="previewArt"></div><h4 id="previewName"></h4><span id="previewDetail"></span><strong id="previewPrice"></strong><b id="previewStock"></b></article><a href="tienda.html" target="_blank">Abrir tienda ↗</a></aside></div></div>`);modal=document.querySelector('#productModal');modal.querySelector('.modal-close').onclick=()=>modal.hidden=true;modal.querySelector('#closeProduct').onclick=()=>modal.hidden=true}const editForm=modal.querySelector('#adminProductForm'),product=adminCatalog[index];Object.entries(product).forEach(([key,value])=>{if(editForm.elements[key])editForm.elements[key].value=value});modal.querySelector('#adminEditorTitle').textContent=`Editar ${product.name}`;const preview=()=>{const data=Object.fromEntries(new FormData(editForm));modal.querySelector('#previewType').textContent=data.cat==='iphone'?'IPHONE':'ACCESORIO';modal.querySelector('#previewArt').className=`live-art ${data.cat}`;modal.querySelector('#previewName').textContent=data.name;modal.querySelector('#previewDetail').textContent=data.detail;modal.querySelector('#previewPrice').textContent=adminMoney(data.price);modal.querySelector('#previewStock').textContent=`${data.stock} disponibles`};editForm.oninput=preview;editForm.onchange=preview;editForm.onsubmit=event=>{event.preventDefault();const data=Object.fromEntries(new FormData(editForm));adminCatalog[index]={...data,price:Number(data.price),stock:Number(data.stock)};localStorage.setItem(adminCatalogKey,JSON.stringify(adminCatalog));renderAdminCatalog();modal.querySelector('#adminProductNote').textContent='Cambios guardados y vista previa actualizada.';preview()};preview();modal.hidden=false}
-renderAdminCatalog();
+const catalogDb = window.supabase.createClient('https://lcycxklnvtccervyuoee.supabase.co', 'sb_publishable_GwKb4zzZQlLeLCbo_DjqNg_7V0n4v_l');
+const productArt = { 'iphone-16-pro': 'phone', 'iphone-16': 'phone', 'iphone-15': 'phone', case: 'case', cable: 'cable', charger: 'charger', buds: 'buds' };
+const adminCatalog = [];
+const money = value => `$ ${Number(value).toLocaleString('es-UY')}`;
+const slug = value => value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+function productCard(product) {
+  return `<article class="panel-product"><div class="panel-product-art ${product.category === 'iphone' ? 'iphone' : 'setup'}">${product.category === 'iphone' ? 'IPHONE' : 'SETUP'}</div><div><span class="status">${product.category === 'iphone' ? 'IPHONE' : 'ACCESORIO'}</span><h3>${product.name}</h3><p>${product.detail}</p><strong>${money(product.price)} · ${product.stock} disponibles</strong></div><button class="outline" data-real-edit="${product.id}">Editar ficha →</button></article>`;
+}
+
+function renderAdminCatalog() {
+  const root = document.querySelector('#panelCatalog');
+  if (!root) return;
+  root.innerHTML = ['iphone', 'accessory'].map(category => `<section class="catalog-group"><header><p>${category === 'iphone' ? 'IPHONE' : 'ACCESORIOS'}</p><span>${category === 'iphone' ? 'Equipos disponibles' : 'Complementos y setup'}</span></header>${adminCatalog.filter(product => product.category === category).map(productCard).join('') || '<p class="empty-state">Sin productos en esta categoría.</p>'}</section>`).join('');
+  root.querySelectorAll('[data-real-edit]').forEach(button => button.onclick = () => openAdminEditor(button.dataset.realEdit));
+}
+
+async function loadCatalog() {
+  const { data, error } = await catalogDb.from('products').select('*').order('position');
+  if (error) return;
+  adminCatalog.splice(0, adminCatalog.length, ...data);
+  renderAdminCatalog();
+}
+
+function openAdminEditor(id) {
+  let modal = document.querySelector('#productModal');
+  if (!modal) {
+    document.body.insertAdjacentHTML('beforeend', `<div class="product-modal" id="productModal" hidden><div class="product-dialog"><button class="modal-close" type="button">×</button><form id="adminProductForm"><p class="eyebrow">EDITOR DE PRODUCTO</p><h3 id="adminEditorTitle"></h3><div class="editor-fields"><label>Nombre<input name="name" required></label><label>Categoría<select name="category"><option value="iphone">iPhone</option><option value="accessory">Accesorio</option></select></label><label>Detalle<input name="detail" required></label><label>Precio UYU<input name="price" type="number" min="0" required></label><label>Stock<input name="stock" type="number" min="0" required></label><label class="wide">Descripción<textarea name="description"></textarea></label></div><div class="editor-actions"><button class="outline" type="button" id="closeProduct">Cancelar</button><button class="primary">Guardar en tienda →</button></div><p class="editor-note" id="adminProductNote"></p></form><aside class="product-live-preview"><p>VISTA PREVIA · TIENDA</p><article><small id="previewType"></small><div class="live-art" id="previewArt"></div><h4 id="previewName"></h4><span id="previewDetail"></span><strong id="previewPrice"></strong><b id="previewStock"></b></article><a href="tienda.html" target="_blank">Abrir tienda ↗</a></aside></div></div>`);
+    modal = document.querySelector('#productModal');
+    modal.querySelector('.modal-close').onclick = () => modal.hidden = true;
+    modal.querySelector('#closeProduct').onclick = () => modal.hidden = true;
+  }
+  const product = adminCatalog.find(item => item.id === id) || { id: '', name: '', detail: '', price: '', category: 'iphone', stock: 0, description: '', position: adminCatalog.length };
+  const form = modal.querySelector('#adminProductForm');
+  Object.entries(product).forEach(([key, value]) => { if (form.elements[key]) form.elements[key].value = value ?? ''; });
+  modal.querySelector('#adminEditorTitle').textContent = product.id ? `Editar ${product.name}` : 'Nuevo producto';
+  const preview = () => {
+    const data = Object.fromEntries(new FormData(form));
+    modal.querySelector('#previewType').textContent = data.category === 'iphone' ? 'IPHONE' : 'ACCESORIO';
+    modal.querySelector('#previewArt').className = `live-art ${data.category}`;
+    modal.querySelector('#previewName').textContent = data.name || 'Nombre del producto';
+    modal.querySelector('#previewDetail').textContent = data.detail || 'Detalle';
+    modal.querySelector('#previewPrice').textContent = money(data.price || 0);
+    modal.querySelector('#previewStock').textContent = `${data.stock || 0} disponibles`;
+  };
+  form.oninput = preview;
+  form.onchange = preview;
+  form.onsubmit = async event => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(form));
+    const record = { ...product, ...data, id: product.id || slug(data.name), price: Number(data.price), stock: Number(data.stock), position: Number(product.position ?? adminCatalog.length), art: product.art || productArt[slug(data.name)] || (data.category === 'iphone' ? 'phone' : 'case') };
+    const note = modal.querySelector('#adminProductNote');
+    note.textContent = 'Guardando en la tienda…';
+    const { error } = await catalogDb.from('products').upsert(record);
+    if (error) { note.textContent = `No se pudo guardar: ${error.message}`; return; }
+    const index = adminCatalog.findIndex(item => item.id === record.id);
+    if (index >= 0) adminCatalog[index] = record; else adminCatalog.push(record);
+    renderAdminCatalog();
+    note.textContent = 'Guardado en Supabase. La tienda se actualiza al recargar.';
+    preview();
+  };
+  preview();
+  modal.hidden = false;
+}
+
+document.querySelector('#products .primary')?.addEventListener('click', () => openAdminEditor(''));
+loadCatalog();

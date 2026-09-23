@@ -23,6 +23,18 @@
 .footer-contact a:last-child{color:#9ba1ae;font-size:12px}
 .footer-contact .footer-channel{display:inline-flex;align-items:center;gap:9px;color:#f4f6fb;border-bottom:1px solid #687082;padding:10px 0;white-space:nowrap}
 .footer-contact .footer-channel svg{width:21px;height:21px;fill:none;stroke:#27dce9;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+@media(min-width:801px){
+  .store .trust-strip{width:100%;max-width:none;min-height:106px;margin:0;padding:18px max(7vw,42px);gap:0;background:#fff;color:#17202d;border-bottom:1px solid #e2e6eb;box-shadow:0 12px 30px #0a18200d}
+  .store .trust-strip>div{min-height:64px;padding:8px 42px;background:transparent;border:0;border-left:1px solid #dbe2e9;border-radius:0;gap:16px}
+  .store .trust-strip>div:first-child{border-left:0;padding-left:0}
+  .store .trust-strip svg{display:grid;place-items:center;width:34px;height:34px;padding:7px;border:1px solid #9aeaf0;border-radius:50%;stroke:#008fa1;background:#ecfbfc}
+  .store .trust-strip b{font-size:13px;letter-spacing:-.01em;color:#0e1a2a}
+  .store .trust-strip small{font-size:11px;color:#607087}
+  .store .filters{min-height:96px;padding:0 max(7vw,42px);gap:0;background:#fff;align-items:stretch;box-shadow:0 8px 18px #16223008}
+  .store .filters button{display:flex;align-items:center;justify-content:center;gap:10px;min-width:150px;padding:0 24px;font-size:13px;border-bottom:3px solid transparent}
+  .store .filter-icon{width:22px;height:22px;margin:0}
+  .store .filters button.selected{border-bottom-color:#00a7b5}
+}
 @media(max-width:800px){
   .filters{padding:12px 20px 0;justify-content:space-between}
   .filters button{flex:1;min-width:0;padding:12px 4px 16px}

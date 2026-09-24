@@ -1,5 +1,5 @@
 (() => {
-  const db = window.supabaseClient;
+  const db = window.supabase.createClient('https://lcycxklnvtccervyuoee.supabase.co', 'sb_publishable_GwKb4zzZQlLeLCbo_DjqNg_7V0n4v_l');
   const sidebar = document.querySelector('.sidebar nav');
   const content = document.querySelector('.workspace') || document.querySelector('main');
   if (!db || !sidebar || !content || document.querySelector('#repairs')) return;
